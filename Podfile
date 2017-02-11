@@ -10,4 +10,6 @@ target 'SocialApp' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'FBSDKLoginKit'
+  pod 'SwiftKeychainWrapper'
 end

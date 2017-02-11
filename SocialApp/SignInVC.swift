@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+import Firebase
 
 class SignInVC: UIViewController {
 
@@ -22,14 +25,33 @@ class SignInVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func facebookBtnTapped(_ sender: Any) {
+        
+        let facebookLoginManager = FBSDKLoginManager()
+        
+        facebookLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            if error != nil {
+                print("ANŽE:uneable to authanticate with facebook - \(error)")
+            } else if result?.isCancelled == true {
+                print("ANŽE: user canceled authentication")
+            } else {
+                print("ANŽE: Succsesfully authenticated with facebook")
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                self.firebaseAuth(credential)
+            }
+        }
+        
+        
     }
-    */
+    
+    func firebaseAuth(_ credential: FIRAuthCredential) {
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("ANŽE: uneable to athenticate with firebase - \(error)")
+            } else {
+                print("ANŽE: athenticated with firebase")
+            }
+        })
+    }
 
 }
