@@ -12,6 +12,10 @@ import FBSDKCoreKit
 import Firebase
 
 class SignInVC: UIViewController {
+    
+    @IBOutlet weak var emailText: FancyField!
+    @IBOutlet weak var passwordText: FancyField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,5 +57,28 @@ class SignInVC: UIViewController {
             }
         })
     }
-
+    
+    @IBAction func signInBtnTapped(_ sender: Any) {
+        
+        if let email = emailText.text, let password = passwordText.text {
+            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+                if error == nil {
+                    print("ANŽE: email user authenticated with Firebase")
+                } else {
+                    FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                        if error != nil {
+                            print("ANŽE: Unable to authenticate with firebase using email")
+                            let alertcontroller = UIAlertController(title: "Oh no!", message: "Incorrect email or password, or you are already signed in with facebook", preferredStyle: .alert)
+                            let defaultAction = UIAlertAction(title: "dismiss", style: .default, handler: nil)
+                            alertcontroller.addAction(defaultAction)
+                            self.present(alertcontroller, animated: true, completion: nil)
+                        } else {
+                            print("ANŽE: Succsesfully authenticated with Firebase")
+                        }
+                    })
+                }
+            })
+        }
+    }
+    
 }
