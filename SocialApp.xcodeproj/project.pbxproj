@@ -13,6 +13,7 @@
 		2657C3E01E4E612E0015F76C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2657C3DE1E4E612E0015F76C /* LaunchScreen.storyboard */; };
 		2657C3E81E4E61F90015F76C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2657C3E71E4E61F90015F76C /* GoogleService-Info.plist */; };
 		2657C3ED1E4E663A0015F76C /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657C3EC1E4E663A0015F76C /* SignInVC.swift */; };
+		265FDA8F1E50B203004D91B8 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FDA8E1E50B203004D91B8 /* FeedVC.swift */; };
 		267D84BF1E4F0FD300B80EC8 /* FancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267D84BE1E4F0FD300B80EC8 /* FancyView.swift */; };
 		267D84C21E4F109100B80EC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267D84C11E4F109100B80EC8 /* Constants.swift */; };
 		267D84C61E4F13C100B80EC8 /* roundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267D84C51E4F13C100B80EC8 /* roundButton.swift */; };
@@ -30,6 +31,7 @@
 		2657C3E11E4E612E0015F76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2657C3E71E4E61F90015F76C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2657C3EC1E4E663A0015F76C /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		265FDA8E1E50B203004D91B8 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		267D84BE1E4F0FD300B80EC8 /* FancyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyView.swift; sourceTree = "<group>"; };
 		267D84C11E4F109100B80EC8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		267D84C51E4F13C100B80EC8 /* roundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = roundButton.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				2657C3EC1E4E663A0015F76C /* SignInVC.swift */,
+				265FDA8E1E50B203004D91B8 /* FeedVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				2657C3ED1E4E663A0015F76C /* SignInVC.swift in Sources */,
 				267D84C61E4F13C100B80EC8 /* roundButton.swift in Sources */,
 				267D84CA1E4F18DD00B80EC8 /* FancyButton.swift in Sources */,
+				265FDA8F1E50B203004D91B8 /* FeedVC.swift in Sources */,
 				2657C3D61E4E612E0015F76C /* AppDelegate.swift in Sources */,
 				267D84BF1E4F0FD300B80EC8 /* FancyView.swift in Sources */,
 				267D84C21E4F109100B80EC8 /* Constants.swift in Sources */,
@@ -394,6 +398,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E8B988CCD71A0BA793858AB5 /* Pods-SocialApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6KV3SC8LP9;
 				INFOPLIST_FILE = SocialApp/Info.plist;
@@ -408,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A4B374D11E523341D0C0B798 /* Pods-SocialApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6KV3SC8LP9;
 				INFOPLIST_FILE = SocialApp/Info.plist;

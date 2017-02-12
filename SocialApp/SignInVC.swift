@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
     
@@ -20,14 +21,17 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            print("ANŽE: foundKey")
+            performSegue(withIdentifier: "goToFeedVC", sender: nil)
+        } else {
+            print ("ANŽE: didnt found key")
+        }
+        
+    }
 
     @IBAction func facebookBtnTapped(_ sender: Any) {
         
@@ -54,6 +58,9 @@ class SignInVC: UIViewController {
                 print("ANŽE: uneable to athenticate with firebase - \(error)")
             } else {
                 print("ANŽE: athenticated with firebase")
+                if let user = user {
+                    self.signInComplete(id: user.uid)
+                }
             }
         })
     }
@@ -64,21 +71,31 @@ class SignInVC: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error == nil {
                     print("ANŽE: email user authenticated with Firebase")
+                    if let user = user {
+                        print("ANŽE: came here")
+                        self.signInComplete(id: user.uid)
+                    }
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                         if error != nil {
                             print("ANŽE: Unable to authenticate with firebase using email")
-                            let alertcontroller = UIAlertController(title: "Oh no!", message: "Incorrect email or password, or you are already signed in with facebook", preferredStyle: .alert)
-                            let defaultAction = UIAlertAction(title: "dismiss", style: .default, handler: nil)
-                            alertcontroller.addAction(defaultAction)
-                            self.present(alertcontroller, animated: true, completion: nil)
                         } else {
                             print("ANŽE: Succsesfully authenticated with Firebase")
+                            
+                            if let user = user {
+                                self.signInComplete(id: user.uid)
+                            }
                         }
                     })
                 }
             })
         }
+    }
+    
+    func signInComplete(id: String) {
+        let keychainresult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("ANŽE: Data saved to keychain \(keychainresult)")
+        performSegue(withIdentifier: "goToFeedVC", sender: nil)
     }
     
 }
