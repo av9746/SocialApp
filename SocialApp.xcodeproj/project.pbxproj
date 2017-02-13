@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		260919081E51C2760065BD5E /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260919071E51C2760065BD5E /* PostCell.swift */; };
+		2609190B1E51FF3F0065BD5E /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2609190A1E51FF3F0065BD5E /* DataService.swift */; };
 		2657C3D61E4E612E0015F76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2657C3D51E4E612E0015F76C /* AppDelegate.swift */; };
 		2657C3DB1E4E612E0015F76C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2657C3D91E4E612E0015F76C /* Main.storyboard */; };
 		2657C3DD1E4E612E0015F76C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2657C3DC1E4E612E0015F76C /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		260919071E51C2760065BD5E /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		2609190A1E51FF3F0065BD5E /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		2657C3D21E4E612E0015F76C /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2657C3D51E4E612E0015F76C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2657C3DA1E4E612E0015F76C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260919091E51FF190065BD5E /* services */ = {
+			isa = PBXGroup;
+			children = (
+				2609190A1E51FF3F0065BD5E /* DataService.swift */,
+			);
+			name = services;
+			sourceTree = "<group>";
+		};
 		2657C3C91E4E612E0015F76C = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 		2657C3D41E4E612E0015F76C /* SocialApp */ = {
 			isa = PBXGroup;
 			children = (
+				260919091E51FF190065BD5E /* services */,
 				267D84C01E4F106500B80EC8 /* utilities */,
 				2657C3E91E4E65BC0015F76C /* Model */,
 				2657C3EA1E4E65C40015F76C /* View */,
@@ -277,6 +288,7 @@
 				2657C3ED1E4E663A0015F76C /* SignInVC.swift in Sources */,
 				267D84C61E4F13C100B80EC8 /* roundButton.swift in Sources */,
 				267D84CA1E4F18DD00B80EC8 /* FancyButton.swift in Sources */,
+				2609190B1E51FF3F0065BD5E /* DataService.swift in Sources */,
 				265FDA8F1E50B203004D91B8 /* FeedVC.swift in Sources */,
 				2657C3D61E4E612E0015F76C /* AppDelegate.swift in Sources */,
 				267D84BF1E4F0FD300B80EC8 /* FancyView.swift in Sources */,
