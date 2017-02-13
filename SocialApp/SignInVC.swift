@@ -32,6 +32,25 @@ class SignInVC: UIViewController {
         }
         
     }
+    
+    func firebaseAuth(_ credential: FIRAuthCredential) {
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("ANŽE: uneable to athenticate with firebase - \(error)")
+            } else {
+                print("ANŽE: athenticated with firebase")
+                if let user = user {
+                    self.signInComplete(id: user.uid)
+                }
+            }
+        })
+    }
+    
+    func signInComplete(id: String) {
+        let keychainresult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("ANŽE: Data saved to keychain \(keychainresult)")
+        performSegue(withIdentifier: "goToFeedVC", sender: nil)
+    }
 
     @IBAction func facebookBtnTapped(_ sender: Any) {
         
@@ -50,19 +69,6 @@ class SignInVC: UIViewController {
         }
         
         
-    }
-    
-    func firebaseAuth(_ credential: FIRAuthCredential) {
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-            if error != nil {
-                print("ANŽE: uneable to athenticate with firebase - \(error)")
-            } else {
-                print("ANŽE: athenticated with firebase")
-                if let user = user {
-                    self.signInComplete(id: user.uid)
-                }
-            }
-        })
     }
     
     @IBAction func signInBtnTapped(_ sender: Any) {
@@ -91,11 +97,5 @@ class SignInVC: UIViewController {
             })
         }
     }
-    
-    func signInComplete(id: String) {
-        let keychainresult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
-        print("ANŽE: Data saved to keychain \(keychainresult)")
-        performSegue(withIdentifier: "goToFeedVC", sender: nil)
-    }
-    
+        
 }

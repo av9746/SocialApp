@@ -142,7 +142,6 @@
         <!--FeedVC-->
         <scene sceneID="Ewq-ms-Pyh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e2f-3J-rJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="gRL-zO-LVw" customClass="FeedVC" customModule="SocialApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nNo-ec-bjo"/>
@@ -230,15 +229,15 @@
                                     <constraint firstItem="zsk-vB-mPn" firstAttribute="leading" secondItem="vXn-wj-36t" secondAttribute="leading" constant="8" id="cem-XW-hIr"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="293" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIA-S6-gdA">
-                                <rect key="frame" x="0.0" y="162" width="320" height="406"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="293" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WIA-S6-gdA">
+                                <rect key="frame" x="0.0" y="154" width="320" height="414"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="293" id="z6E-Mr-6LL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="293" id="z6E-Mr-6LL" customClass="PostCell" customModule="SocialApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="293"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z6E-Mr-6LL" id="iz7-uc-Tav">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="292"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="293"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doL-c6-jjh" customClass="FancyView" customModule="SocialApp" customModuleProvider="target">
@@ -250,7 +249,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcg-6t-Kat">
                                                                     <rect key="frame" x="0.0" y="0.0" width="278" height="60"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="LAW-de-f76">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="LAW-de-f76" customClass="CircleView" customModule="SocialApp" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="60" id="Hue-ac-4k9"/>
@@ -273,11 +272,14 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8xq-8X-fxm">
-                                                                    <rect key="frame" x="0.0" y="65" width="278" height="113.5"/>
+                                                                    <rect key="frame" x="0.0" y="65" width="278" height="123.5"/>
                                                                 </imageView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zzH-3B-tDv">
-                                                                    <rect key="frame" x="0.0" y="183.5" width="278" height="60"/>
+                                                                    <rect key="frame" x="0.0" y="193.5" width="278" height="50"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="JMq-8f-N5k"/>
+                                                                    </constraints>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -331,13 +333,20 @@
                                                 <constraint firstAttribute="trailing" secondItem="doL-c6-jjh" secondAttribute="trailing" constant="16" id="vJj-ej-cDB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionText" destination="zzH-3B-tDv" id="MFu-gF-QMr"/>
+                                            <outlet property="likesLbl" destination="Rlz-2k-EgD" id="TqL-aF-Ywl"/>
+                                            <outlet property="postImage" destination="8xq-8X-fxm" id="NI2-Hh-dm6"/>
+                                            <outlet property="profileImg" destination="LAW-de-f76" id="Fry-nx-HAg"/>
+                                            <outlet property="userLabel" destination="8yS-Ov-c3t" id="IUQ-dg-9NO"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.80343037843704224" green="0.84853881597518921" blue="0.86479991674423218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="WIA-S6-gdA" firstAttribute="top" secondItem="vXn-wj-36t" secondAttribute="bottom" constant="16" id="4AN-mL-XPS"/>
+                            <constraint firstItem="WIA-S6-gdA" firstAttribute="top" secondItem="vXn-wj-36t" secondAttribute="bottom" constant="8" id="4AN-mL-XPS"/>
                             <constraint firstItem="F6v-3D-XQH" firstAttribute="top" secondItem="KOQ-3N-XKj" secondAttribute="top" id="54x-U7-9OF"/>
                             <constraint firstItem="F6v-3D-XQH" firstAttribute="leading" secondItem="KOQ-3N-XKj" secondAttribute="leading" id="Edq-Dq-udn"/>
                             <constraint firstItem="vXn-wj-36t" firstAttribute="top" secondItem="F6v-3D-XQH" secondAttribute="bottom" constant="16" id="IlY-OZ-f9o"/>
@@ -349,7 +358,11 @@
                             <constraint firstItem="vXn-wj-36t" firstAttribute="leading" secondItem="KOQ-3N-XKj" secondAttribute="leading" constant="16" id="zNZ-u0-nSx"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="WIA-S6-gdA" id="cKB-IH-h9R"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e2f-3J-rJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1016.25" y="97.183098591549296"/>
         </scene>
