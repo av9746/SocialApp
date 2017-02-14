@@ -16,9 +16,17 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var captionText: UITextView!
     @IBOutlet weak var likesLbl: UILabel!
     
+    var post: Post!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func congigureCell(post: Post) {
+        self.post = post
+        self.captionText.text = post.caption
+        self.likesLbl.text = "\(post.likes)"
     }
     
 }
