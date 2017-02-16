@@ -14,10 +14,14 @@ class FeedVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addImage: CircleView!
+    @IBOutlet weak var captionField: FancyField!
     
+
+ 
     var posts: [Post] = []
     var imagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var imageSelected = false
     
     
     override func viewDidLoad() {
@@ -52,6 +56,33 @@ class FeedVC: UIViewController {
     }
     
 
+    @IBAction func postBtnTapped(_ sender: Any) {
+        guard let caption = captionField.text, caption != "" else {
+            print("alert needs to be add")
+            return
+        }
+        guard let image = addImage.image, imageSelected == true else {
+            print("allert for image needs to be add")
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(image, 0.2) {
+            let imageUid = NSUUID().uuidString
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            DataService.ds.REF_POST_IMAGES.child(imageUid).put(imgData, metadata: metaData) { (metadata, error) in
+                if error != nil {
+                    print("ANŽE: Unable to upload image to firebase storage")
+                } else {
+                    print("ANŽE: Succsesfully uploaded images to storage")
+                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                }
+                
+            }
+        }
+        
+        
+    }
 
     @IBAction func SignOutTapped(_ sender: Any) {
         let removeSuccsesfull = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
@@ -96,6 +127,7 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource, UIImagePickerContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImage.image = image
+            imageSelected = true
         } else {
             print("ANŽE: image wasnt selected")
         }
