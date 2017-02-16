@@ -17,6 +17,8 @@ class FeedVC: UIViewController {
     
     var posts: [Post] = []
     var imagePicker: UIImagePickerController!
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,7 @@ class FeedVC: UIViewController {
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
-        DataService.ds.REF_POST.observe(.value, with: {(snapshot) in
+        DataService.ds.REF_POSTS.observe(.value, with: {(snapshot) in
             
             self.posts = []
             
@@ -52,7 +54,7 @@ class FeedVC: UIViewController {
 
 
     @IBAction func SignOutTapped(_ sender: Any) {
-        let removeSuccsesfull = KeychainWrapper.standard.remove(key: KEY_UID)
+        let removeSuccsesfull = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("ANŽE:Keychain removed \(removeSuccsesfull)")
         try! FIRAuth.auth()?.signOut()
         dismiss(animated:true, completion: nil)
@@ -78,8 +80,13 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource, UIImagePickerContr
         
         let post = posts[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell{
-            cell.congigureCell(post: post)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
+            
+            if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
+                cell.configureCell(post: post, img: img)
+            } else {
+                cell.configureCell(post: post)
+            }
             return cell
         } else {
             return PostCell()
