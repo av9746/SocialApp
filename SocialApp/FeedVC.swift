@@ -55,6 +55,24 @@ class FeedVC: UIViewController {
         
     }
     
+    func postToFirebase(imageUrl: String) {
+        let post: Dictionary<String, AnyObject> = [
+            "caption": captionField.text! as AnyObject,
+            "imageUrl": imageUrl as AnyObject,
+            "likes": 0 as AnyObject
+        ]
+        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        captionField.text = ""
+        imageSelected = false
+        addImage.image = UIImage(named: "add-image")
+        
+        tableView.reloadData()
+        
+    }
+    
 
     @IBAction func postBtnTapped(_ sender: Any) {
         guard let caption = captionField.text, caption != "" else {
@@ -76,6 +94,9 @@ class FeedVC: UIViewController {
                 } else {
                     print("ANŽE: Succsesfully uploaded images to storage")
                     let downloadURL = metadata?.downloadURL()?.absoluteString
+                    if let url = downloadURL {
+                        self.postToFirebase(imageUrl: url)
+                    }
                 }
                 
             }
